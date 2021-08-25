@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify 
+from flask_sqlalchemy import SQLAlchemy
+import os
 import random
 import uuid
 
@@ -7,6 +9,12 @@ app = Flask(__name__)
 #lists containing card data
 values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
+
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+from models import Deck
 
 def createDeck (count):
     newDeck = []
