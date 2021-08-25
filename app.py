@@ -34,7 +34,7 @@ def deck(count = 1):
     return jsonify(newDeck)
 
 @app.route('/deck/jokers')
-@app.route('/deck/jokers/<int:count>')
+# @app.route('/deck/jokers/<int:count>')
 def jokerDeck(count = 1):
     newDeck = createDeck(count)
     random.shuffle(newDeck)
@@ -49,7 +49,7 @@ def unshuffled(count = 1):
     return jsonify(newDeck)
 
 @app.route('/unshuffled/jokers')
-@app.route('/unshuffled/jokers/<int:count>')
+# @app.route('/unshuffled/jokers/<int:count>/')
 def unshuffledJokers(count = 1):
     newDeck = createDeck(count)
     newDeck.append(["Joker", "Joker"])
