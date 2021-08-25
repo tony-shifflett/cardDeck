@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify 
 import random
+import uuid
 
 app = Flask(__name__)
 
 #lists containing card data
 values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
-
 
 def createDeck (count):
     newDeck = []
