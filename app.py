@@ -8,14 +8,17 @@ values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", 
 suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
 
 
-def createDeck ():
+def createDeck (count):
     newDeck = []
     for value in values:
         for suit in suits:
             newCard =[]
             newCard.append(value)
             newCard.append(suit)
-            newDeck.append(newCard)
+            i = 0
+            while i < count:
+                newDeck.append(newCard)
+                i += 1
     return newDeck
 
 
@@ -24,27 +27,31 @@ def test ():
     return "Basic Functionality Running"
 
 @app.route('/deck')
-def deck():
-    newDeck = createDeck()
+@app.route('/deck/<int:count>')
+def deck(count = 1):
+    newDeck = createDeck(count)
     random.shuffle(newDeck)
     return jsonify(newDeck)
 
 @app.route('/deck/jokers')
-def jokerDeck():
-    newDeck = createDeck()
+@app.route('/deck/jokers/<int:count>')
+def jokerDeck(count = 1):
+    newDeck = createDeck(count)
     random.shuffle(newDeck)
     newDeck.insert(random.randint(0, len(newDeck)),["Joker", "Joker"])
     newDeck.insert(random.randint(0, len(newDeck)),["Joker", "Joker"])
     return jsonify(newDeck)
 
 @app.route('/unshuffled')
-def unshuffled():
-    newDeck = createDeck()
+@app.route('/unshuffled/<int:count>')
+def unshuffled(count = 1):
+    newDeck = createDeck(count)
     return jsonify(newDeck)
 
 @app.route('/unshuffled/jokers')
-def unshuffledJokers():
-    newDeck = createDeck()
+@app.route('/unshuffled/jokers/<int:count>')
+def unshuffledJokers(count = 1):
+    newDeck = createDeck(count)
     newDeck.append(["Joker", "Joker"])
     newDeck.append(["Joker", "Joker"])
     return jsonify(newDeck)
