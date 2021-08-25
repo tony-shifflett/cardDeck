@@ -3,21 +3,21 @@ import random
 
 app = Flask(__name__)
 
-cards = [
-    "1H",
-    "2H",
-    "3H",
-    "4H",
-    "5H",
-    "6H",
-    "7H",
-    "8H",
-    "9H",
-    "10H",
-    "JH",
-    "QH",
-    "KH"
-]
+#lists containing card data
+values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
+
+
+def createDeck ():
+    newDeck = []
+    for value in values:
+        for suit in suits:
+            newCard =[]
+            newCard.append(value)
+            newCard.append(suit)
+            newDeck.append(newCard)
+    return newDeck
+
 
 @app.route("/")
 def test ():
@@ -25,12 +25,29 @@ def test ():
 
 @app.route('/deck')
 def deck():
-    newDeck = random.sample(cards, len(cards))
+    newDeck = createDeck()
+    random.shuffle(newDeck)
+    return jsonify(newDeck)
+
+@app.route('/deck/jokers')
+def jokerDeck():
+    newDeck = createDeck()
+    random.shuffle(newDeck)
+    newDeck.insert(random.randint(0, len(newDeck)),["Joker", "Joker"])
+    newDeck.insert(random.randint(0, len(newDeck)),["Joker", "Joker"])
     return jsonify(newDeck)
 
 @app.route('/unshuffled')
 def unshuffled():
-    return jsonify(cards)
+    newDeck = createDeck()
+    return jsonify(newDeck)
+
+@app.route('/unshuffled/jokers')
+def unshuffledJokers():
+    newDeck = createDeck()
+    newDeck.append(["Joker", "Joker"])
+    newDeck.append(["Joker", "Joker"])
+    return jsonify(newDeck)
 
 
 if __name__ == '__main__':
