@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Deck</title>
+</head>
+<body>
+    <header>
+        <h1>Card Deck</h1>
+    </header>
+    <section>
+        <p>Card Deck is a simple API built in Python using the Flask framework. It provides suffled and unshuffled card stacks built on a variable number of standard 52 card decks, specified by the user.</p>
+    </section>
+    <h2>Card Deck provides the following routes:</h2>
+    <section>
+        <h3>/deck/[count]</h3>
+        <p>The basic /deck route, with the optional count parameter, provides a suffled deck of cards based on the standard 52 card deck, without jokers. You can increase the number of decks used by appending the desired number as the count parameter. For example, /deck/6 will return a shuffled deck built from six 52 card decks, for a total of 312 randomly ordered cards.</p>
+    </section>
+    <section>
+        <h3>/unshuffled/[count]</h3>
+        <p>If you want a set of unshuffled cards, the /unshuffled route provides that, with the optional count parameter that functions as above. The deck is returned in ascending order of value with Ace counted as the low card. The suits are ordered Hearts, Clubs, Spades, and finally Diamonds, with duplicate cards from a multi-deck appearing adjacent to one another. </p>
+    </section>
+    <section>
+        <h3>Jokers</h3>
+        <p>Jokers are available in single deck sets either unshuffled or unshuffled. A shuffled deck with jokers included can be obtained from the /deck/jokers route, and /unshuffled/jokers provides an unshuffled deck with two jokers added at the end of the stack. It is only possible to include jokers in a single deck.</p>
+    </section>
+    <hr>
+    <p>Be sure to check me out on <a href="{{linkedin}}">LinkedIn</a> and <a href="{{github}}">GitHub</a></p>
+</body>
+</html>

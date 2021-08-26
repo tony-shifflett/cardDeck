@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify 
+from flask import Flask, request, jsonify, render_template 
 from flask_sqlalchemy import SQLAlchemy
 import os
 import random
@@ -10,11 +10,11 @@ app = Flask(__name__)
 values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
 
-app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# app.config.from_object(os.environ['APP_SETTINGS'])
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db = SQLAlchemy(app)
 
-from models import Deck
+# from models import Deck
 
 def createDeck (count):
     newDeck = []
@@ -32,7 +32,7 @@ def createDeck (count):
 
 @app.route("/")
 def test ():
-    return "Basic Functionality Running"
+    return render_template('landing.html', github="https://www.github.com/tony-shifflett", linkedin="https://linkedin.com/in/tony-shifflett-4bb60220a")
 
 @app.route('/deck')
 @app.route('/deck/<int:count>')

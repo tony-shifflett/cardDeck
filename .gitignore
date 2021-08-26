@@ -5,3 +5,8 @@
 !*.py
 !requirements.txt
 !Procfile
+!/static
+!/css
+!/templates
+!*.css
+!*.html
